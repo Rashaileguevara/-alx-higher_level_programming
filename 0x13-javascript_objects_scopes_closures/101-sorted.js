@@ -1,9 +1,15 @@
 #!/usr/bin/node
-exports.dict = {
-  89: 1,
-  90: 2,
-  91: 1,
-  92: 3,
-  93: 1,
-  94: 2
-};
+const { dict } = require('./101-data');
+
+const newd = {};
+let list = [];
+for (const [key, value] of Object.entries(dict)) {
+  if (!(value in newd)) {
+    list = [];
+  } else {
+    list = newd[value];
+  }
+  list.push(key);
+  newd[value] = list;
+}
+console.log(newd);
